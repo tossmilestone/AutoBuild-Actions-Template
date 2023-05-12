@@ -239,6 +239,8 @@ EOF
 			fi
 		done ; unset i
 		Kconfig_Path=${CustomFiles}/Kconfig
+		if [[ -e $Kconfig_Path ]]
+		then
 		Tree=${WORK}/target/linux
 		cd ${Kconfig_Path}
 		for i in $(du -a | awk '{print $2}' | busybox sed -r 's/.\//\1/' | grep -wv '^.' | sort | uniq)
@@ -279,6 +281,7 @@ EOF
 				fi
 			fi
 		done ; unset i
+		fi
 	fi
 	CD ${WORK}
 	ECHO "[Firmware_Diy_Other] Done"
